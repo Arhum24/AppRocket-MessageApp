@@ -9,7 +9,7 @@ var dburl = 'mongodb://localhost:27017/AppRocket';
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var config = require('../config');
-var VerifyToken = require('./VerifyToken.js');
+//var VerifyToken = require('./VerifyToken.js');
 
 try{
 
