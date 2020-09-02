@@ -3,9 +3,20 @@ var router = express.Router();
 var ctrl = require('../controllers/UserAuth');
 var VerifyToken = require('../controllers/VerifyToken');
 
-router.post('/Signup', VerifyToken, ctrl.Signup);
-router.post('/Login', VerifyToken, ctrl.Login);
-router.get('/userdata', VerifyToken, ctrl.userdata);
-router.get('/Logout', VerifyToken, ctrl.Logout);
+// Permissions
+var Permissions = function (req, res, next) {
+
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    
+    next();
+  }
+
+router.post('/Signup', [Permissions], ctrl.Signup);
+router.post('/Login', [Permissions], ctrl.Login);
+router.get('/userdata', [VerifyToken, Permissions], ctrl.userdata);
+router.get('/Logout', [Permissions], ctrl.Logout);
 
 module.exports = router;
