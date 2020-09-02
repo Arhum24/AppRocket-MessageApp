@@ -1,25 +1,76 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
+import LandingPage from "./components/LandingPage";
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      {/* <Header /> */}
+      <Switch>
+        
+        <Route path="/"
+          render={() => {
+
+            if (!localStorage.getItem("token") || JSON.parse(localStorage.getItem("profile")).auth == false)
+              return (
+                <Redirect to="/Autherization" />
+
+              )
+            else {
+
+              return <LandingPage />
+            }
+          }}
+
+        />
+
+
+
+
+
+
+        
+        <Route path="/Appointments"
+
+          render={() => {
+
+            if (!localStorage.getItem("token") || JSON.parse(localStorage.getItem("profile")).auth == false)
+              return (
+                <Redirect to="/Autherization" />
+
+              )
+            else {
+
+              return <Appointments />
+            }
+          }}
+
+
+        />
+        
+        <Route path="/Autherization" component={Autherization} />
+        <Route path="/logout" ><Logout /></Route>
+        <Route path="/PDFShow" component={PDFShow} />
+        
+        <Route
+          exact
+          path="/"
+          render={() => {
+
+            localStorage.clear();
+            return (
+              <Redirect to="/Autherization" />
+
+            )
+          }}
+        />
+        <Route path="/*" component={PageNotFound} />
+
+      </Switch>
+
+    </Router>
+
   );
 }
 
