@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
 import { mainUser, contactsMessages, Message } from './generateFakeData'
-import Avatar from './components/Avatar'
-import ContactBox from './components/ContactBox'
-import MessagesBox from './components/MessagesBox'
-import ChatInputBox from './components/ChatInputBox'
-import Search from './components/Search'
-import Welcome from './components/Welcome'
+import TopName from './TopName'
+import ContactBox from './ContactBox'
+import MessagesBox from './MessagesBox'
+import ChatInputBox from './ChatInputBox'
+import Search from './Search'
+import DefaultShow from './DefaultShow'
 import './generateFakeData'
 import '../App.css'
 
@@ -48,7 +48,7 @@ function ChatPage() {
         <div className="app">
             <aside>
                 <header>
-                    <Avatar user={mainUser} />
+                    <TopName user={mainUser} />
                 </header>
                 <Search search={search} setSearch={setSearch} />
                 <div className="contact-boxes">
@@ -65,13 +65,13 @@ function ChatPage() {
             {contactSelected.id ? (
                 <main>
                     <header>
-                        <Avatar user={contactSelected} showName />
+                        <TopName user={contactSelected} showName />
                     </header>
                     <MessagesBox messages={currentMessages} />
                     <ChatInputBox message={message} setMessage={setMessage} pushMessage={pushMessage} />
                 </main>
             ) : (
-                <Welcome />
+                <DefaultShow />
             )}
         </div>
     )

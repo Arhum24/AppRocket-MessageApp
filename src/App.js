@@ -1,57 +1,45 @@
 import React from 'react';
-//import logo from './logo.svg';
 import LandingPage from "./components/LandingPage";
-import './App.css';
+import ChatPage from "./components/ChatPage";
+import Login from "./components/Login/Login";
+import Signup from "./components/Signup/Signup";
 
 function App() {
   return (
     <Router history={history}>
-      {/* <Header /> */}
       <Switch>
-        
         <Route path="/"
           render={() => {
 
             if (!localStorage.getItem("token") || JSON.parse(localStorage.getItem("profile")).auth == false)
               return (
-                <Redirect to="/Autherization" />
-
-              )
+                <Redirect to="/LandingPage" />
+                )
             else {
 
               return <LandingPage />
-            }
+              }
           }}
 
         />
-
-
-
-
-
-
-        
-        <Route path="/Appointments"
-
-          render={() => {
+          <Route path="/ChatPage"
+            render={() => {
 
             if (!localStorage.getItem("token") || JSON.parse(localStorage.getItem("profile")).auth == false)
               return (
-                <Redirect to="/Autherization" />
+                <Redirect to="/LandingPage" />
 
               )
             else {
 
-              return <Appointments />
+              return <ChatPage />
             }
-          }}
+            }}
 
-
-        />
+          />
         
-        <Route path="/Autherization" component={Autherization} />
-        <Route path="/logout" ><Logout /></Route>
-        <Route path="/PDFShow" component={PDFShow} />
+        <Route path="/Login" component={Login} />
+        <Route path="/Signup" component={Signup} />
         
         <Route
           exact
@@ -60,12 +48,10 @@ function App() {
 
             localStorage.clear();
             return (
-              <Redirect to="/Autherization" />
-
-            )
-          }}
+              <Redirect to="/LandingPage" />
+              )
+            }}
         />
-        <Route path="/*" component={PageNotFound} />
 
       </Switch>
 
