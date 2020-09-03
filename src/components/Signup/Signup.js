@@ -29,7 +29,7 @@ export default function Signup(props) {
                     async function fetchData() {
 
                         const token = localStorage.getItem("token");
-                        await fetch("http://localhost:8000/api/auth/userdata", {
+                        await fetch("http://127.0.0.1:8000/api/userdata", {
                             method: 'GET',
                             headers: {
                                 'x-access-token': token, "Access-Control-Allow-Origin": "*",
