@@ -35,7 +35,7 @@ module.exports.Signup =  (req, res) => {
 // Fetching User Data
 module.exports.userdata =  (req, res) => {
 
-  User.findById(req.body.userId, function (err, user) {
+  User.findById(req.userId, function (err, user) {
     if (err) return res.status(500).send("There was a Problem Finding the User.");
     if (!user) return res.status(404).send("No User found.");
 
