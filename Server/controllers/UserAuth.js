@@ -7,6 +7,7 @@ var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var config = require('./config');
+var ObjectId = require('mongodb').ObjectID;
 //var VerifyToken = require('./VerifyToken.js');
 
 try{
@@ -34,7 +35,7 @@ module.exports.Signup =  (req, res) => {
 // Fetching User Data
 module.exports.userdata =  (req, res) => {
 
-  User.findById(req.userId, function (err, user) {
+  User.findById(req.body.userId, function (err, user) {
     if (err) return res.status(500).send("There was a Problem Finding the User.");
     if (!user) return res.status(404).send("No User found.");
 
@@ -45,7 +46,7 @@ module.exports.userdata =  (req, res) => {
 
 // Fetching All User Data except Current
 module.exports.allusersdata =  (req, res) => {
-  User.find( {_id:{$ne:req.userId} }, function(err, users){
+  User.find( { _id: { $nin: [ObjectId(req.body.userId)] } }, function(err, users) {
     if (err) return res.status(500).send("There was a Problem Finding the User.");
     if (!users) return res.status(404).send("No User found.");
 
