@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var config = require('./Server/controllers/config');
+var User = require('./Server/models/user');
+var Message = require('./Server/models/chat');
 var mongoose = require('mongoose');
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -11,6 +14,8 @@ var mongoose = require('mongoose');
 var user = require('./Server/routes/user');
 
 var app = express();
+
+
 
 // MongoDB Setup
 var db = mongoose.connection;
@@ -24,6 +29,7 @@ mongoose.connect(dburl, { useNewUrlParser: true,useUnifiedTopology: true,useCrea
   }
 
 });
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,3 +63,38 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+const server = app.listen(8000, () => {
+  console.log("Server listening on port 8000");
+});
+
+const io = require("socket.io")(server);
+
+// Socket Setup
+io.use(async (socket, next) => {
+  try {
+    const token = socket.handshake.query.token;
+    const decoded = await jwt.verify(token, config.secret);
+    socket.userId = decoded.id;
+    next();
+  } catch (err) {}
+});
+
+io.on("connection", (socket) => {
+  socket.on("chat", async ({ reciever, message }) => {
+    if (message.trim().length > 0) {
+      const user = await User.findOne({ _id: socket.userId });
+      const newMessage = new Message({
+        reciever: reciever,
+        sender: socket.userId,
+        message,
+        username:user.username
+      });
+      io.to(reciever).emit("newMessage", {
+        messge,
+        sender: socket.userId,
+      });
+      await newMessage.save();
+    }
+  });
+});
