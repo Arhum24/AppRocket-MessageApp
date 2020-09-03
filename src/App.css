@@ -19,8 +19,8 @@ aside {
 
 main {
   width: 70%;
-  background: #e5ddd5;
-  background-image: url(./assets/chatbg.png);
+  background: #e1e1e1;
+  /* background-image: url(./assets/chatbg.png); */
   display: flex;
   flex-direction: column;
   background-size: contain;

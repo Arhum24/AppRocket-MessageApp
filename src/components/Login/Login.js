@@ -14,7 +14,7 @@ export default function Login(props) {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-        await fetch("http://localhost:8000/api/Login", {
+        await fetch("https://approcketmessaging-node.herokuapp.com/api/Login", {
             method: 'POST',
 
             body: new URLSearchParams({
@@ -29,7 +29,7 @@ export default function Login(props) {
                     async function fetchData() {
 
                         const token = localStorage.getItem("token");
-                        await fetch("http://127.0.0.1:8000/api/userdata", {
+                        await fetch("https://approcketmessaging-node.herokuapp.com/api/userdata", {
                             method: 'GET',
                             headers: {
                                 'x-access-token': token, "Access-Control-Allow-Origin": "*",

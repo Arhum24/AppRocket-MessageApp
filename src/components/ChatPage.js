@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 import { mainUser, contactsMessages, Message } from './generateFakeData'
-// import Options from './Options'
-import Avatar from './Avatar'
-import ContactBox from './ContactBox'
-import MessagesBox from './MessagesBox'
-import ChatInputBox from './ChatInputBox'
-import Search from './Search'
-import Welcome from './Welcome'
+import Avatar from '../components/Avatar'
+import ContactBox from '../components/ContactBox'
+import MessagesBox from '../components/MessagesBox'
+import ChatInputBox from '../components/ChatInputBox'
+import Search from '../components/Search'
+import Welcome from '../components/Welcome'
+
 import '../App.css'
 
 export default function ChatPage() {
@@ -76,3 +76,4 @@ export default function ChatPage() {
         </div>
     )
 }
+
