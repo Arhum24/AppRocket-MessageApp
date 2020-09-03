@@ -43,6 +43,17 @@ module.exports.userdata =  (req, res) => {
 
 };
 
+// Fetching All User Data except Current
+module.exports.allusersdata =  (req, res) => {
+  User.find( {_id:{$ne:req.userId} }, function(err, users){
+    if (err) return res.status(500).send("There was a Problem Finding the User.");
+    if (!users) return res.status(404).send("No User found.");
+
+    res.status(200).send(users);
+  });
+
+};
+
 
 // Login
 module.exports.Login =  (req, res) => {

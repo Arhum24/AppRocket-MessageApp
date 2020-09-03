@@ -17,6 +17,7 @@ var Permissions = function (req, res, next) {
 router.post('/Signup', [Permissions], ctrl.Signup);
 router.post('/Login', [Permissions], ctrl.Login);
 router.get('/userdata', [VerifyToken, Permissions], ctrl.userdata);
+router.get('/allusersdata', [VerifyToken, Permissions], ctrl.allusersdata);
 router.get('/Logout', [Permissions], ctrl.Logout);
 
 module.exports = router;
