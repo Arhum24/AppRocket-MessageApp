@@ -1,5 +1,5 @@
 import React from 'react'
-// import doubleCheck from '../assets/done_all.svg'
+import doubleCheck from '../assets/done_all.svg'
 import Options from './Options'
 
 export default function ContactBox({ contact, setContactSelected, messages }) {
@@ -18,7 +18,7 @@ export default function ContactBox({ contact, setContactSelected, messages }) {
                     <span className="time-mark">{lastMsg.date.toLocaleDateString()}</span>
                 </div>
                 <div className="last-msg">
-                    {/* <img src={} alt="" className="icon-small" /> */}
+                    <img src={doubleCheck} alt="" className="icon-small" />
                     <span className="text">{truncate(lastMsg.msg, 30)}</span>
                 </div>
             </div>

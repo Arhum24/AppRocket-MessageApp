@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 import { mainUser, contactsMessages, Message } from './generateFakeData'
-import Options from './Options'
+// import Options from './Options'
 import Avatar from './Avatar'
 import ContactBox from './ContactBox'
 import MessagesBox from './MessagesBox'
 import ChatInputBox from './ChatInputBox'
 import Search from './Search'
-import DefaultShow from './DefaultShow'
-import './generateFakeData'
+import Welcome from './Welcome'
 import '../App.css'
 
 export default function ChatPage() {
@@ -72,7 +71,7 @@ export default function ChatPage() {
                     <ChatInputBox message={message} setMessage={setMessage} pushMessage={pushMessage} />
                 </main>
             ) : (
-                <DefaultShow />
+                <Welcome />
             )}
         </div>
     )
