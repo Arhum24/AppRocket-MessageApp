@@ -20,7 +20,7 @@ aside {
 main {
   width: 70%;
   background: #e5ddd5;
-  background-image: url(./assets/chatbg.png);
+  /* background-image: url(./assets/chatbg.png); */
   display: flex;
   flex-direction: column;
   background-size: contain;
@@ -47,7 +47,7 @@ main {
 }
 
 .search input[type='text'] {
-  background-image: url(./assets/search.svg);
+  /* background-image: url(./assets/search.svg); */
   background-repeat: no-repeat;
   background-size: 1rem, 1rem;
   background-position: 0.45rem 0.35rem;

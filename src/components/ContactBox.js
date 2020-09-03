@@ -1,6 +1,6 @@
 import React from 'react'
-import doubleCheck from '../assets/done_all.svg'
-import Avatar from './Avatar'
+// import doubleCheck from '../assets/done_all.svg'
+import Options from './Options'
 
 export default function ContactBox({ contact, setContactSelected, messages }) {
     const maxTs = Math.max(...messages.map((m) => m.date.getTime()))
@@ -11,14 +11,14 @@ export default function ContactBox({ contact, setContactSelected, messages }) {
     }
     return (
         <div className="contact-box" onClick={() => setContactSelected(contact)}>
-            <Avatar user={contact} />
+            <Options user={contact} />
             <div className="right-section">
                 <div className="contact-box-header">
                     <h3 className="avatar-title">{contact.name}</h3>
                     <span className="time-mark">{lastMsg.date.toLocaleDateString()}</span>
                 </div>
                 <div className="last-msg">
-                    <img src={doubleCheck} alt="" className="icon-small" />
+                    {/* <img src={} alt="" className="icon-small" /> */}
                     <span className="text">{truncate(lastMsg.msg, 30)}</span>
                 </div>
             </div>

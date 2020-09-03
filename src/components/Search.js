@@ -5,7 +5,7 @@ export default function Search({ search, setSearch }) {
         <div className="search">
             <input
                 type="text"
-                placeholder="Search or start a new chat"
+                placeholder="Search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />

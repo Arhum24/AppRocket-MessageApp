@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { mainUser, contactsMessages, Message } from './generateFakeData'
-import TopName from './TopName'
+import Options from './Options'
 import ContactBox from './ContactBox'
 import MessagesBox from './MessagesBox'
 import ChatInputBox from './ChatInputBox'
@@ -10,7 +10,7 @@ import DefaultShow from './DefaultShow'
 import './generateFakeData'
 import '../App.css'
 
-function ChatPage() {
+export default function ChatPage() {
     const [data, setData] = useState(contactsMessages)
     const [contactSelected, setContactSelected] = useState({})
     const [currentMessages, setCurrentMessages] = useState([])
@@ -48,7 +48,7 @@ function ChatPage() {
         <div className="app">
             <aside>
                 <header>
-                    <TopName user={mainUser} />
+                    <Options user={mainUser} />
                 </header>
                 <Search search={search} setSearch={setSearch} />
                 <div className="contact-boxes">
@@ -65,7 +65,7 @@ function ChatPage() {
             {contactSelected.id ? (
                 <main>
                     <header>
-                        <TopName user={contactSelected} showName />
+                        <Options user={contactSelected} showName />
                     </header>
                     <MessagesBox messages={currentMessages} />
                     <ChatInputBox message={message} setMessage={setMessage} pushMessage={pushMessage} />
@@ -76,5 +76,3 @@ function ChatPage() {
         </div>
     )
 }
-
-export default ChatPage

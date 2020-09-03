@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "./Login.css";
+import NavBar from '../NavBar/NavBar'
 
 export default function Login(props) {
   const [username, setUsername] = useState("");
@@ -57,10 +58,12 @@ export default function Login(props) {
   }
 
   return (
+    <div>
+      {/* <NavBar /> */}
     <div className="Login">
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="username" bsSize="large">
-          <ControlLabel>username</ControlLabel>
+          <FormLabel>Username</FormLabel>
           <FormControl
             autoFocus
             type="username"
@@ -69,17 +72,18 @@ export default function Login(props) {
           />
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
+          <FormLabel>Password</FormLabel>
           <FormControl
             value={password}
             onChange={e => setPassword(e.target.value)}
             type="password"
           />
         </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
+        <Button variant="success" block bsSize="large" disabled={!validateForm()} type="submit">
           Login
         </Button>
       </form>
+    </div>
     </div>
   )
 }

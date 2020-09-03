@@ -19,7 +19,7 @@ function App() {
             <NavBar />
           </Route>
 
-          <Route path="/ChatPage"
+          {/* <Route path="/ChatPage"
             render={() => {
 
             if (!localStorage.getItem("token") || JSON.parse(localStorage.getItem("profile")).auth === false)
@@ -33,8 +33,8 @@ function App() {
             }
             }}
 
-          />
-        
+          /> */}
+        <Route path="/ChatPage" component={ChatPage} />
         <Route path="/Login" component={Login} />
         <Route path="/Signup" component={Signup} />
         

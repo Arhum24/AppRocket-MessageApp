@@ -1,7 +1,7 @@
 import React from 'react'
-import emojiIcon from '../assets/tag_faces.svg'
-import micIcon from '../assets/mic.svg'
-import sendIcon from '../assets/send.svg'
+// import emojiIcon from '../assets/tag_faces.svg'
+// import micIcon from '../assets/mic.svg'
+// import sendIcon from '../assets/send.svg'
 
 export default function ChatInputBox({ message, setMessage, pushMessage }) {
     function handleKeyDown(e) {
@@ -12,7 +12,7 @@ export default function ChatInputBox({ message, setMessage, pushMessage }) {
     return (
         <div className="chat-input-box">
             <div className="icon emoji-selector">
-                <img src={emojiIcon} alt="" />
+                {/* <img src={emojiIcon} alt="" /> */}
             </div>
 
             <div className="chat-input">
@@ -26,7 +26,7 @@ export default function ChatInputBox({ message, setMessage, pushMessage }) {
             </div>
 
             <div className="icon send" onClick={pushMessage}>
-                <img src={message ? sendIcon : micIcon} alt="" />
+                {/* <img src={message ? sendIcon : micIcon} alt="" /> */}
             </div>
         </div>
     )
