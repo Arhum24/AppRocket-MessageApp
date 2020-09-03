@@ -8,9 +8,9 @@ export default function Broadcast() {
     const handleShow = () => setShow(true);
   
     return (
-      <>
+      <div>
         <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
+          Broadcast
         </Button>
   
         <Modal show={show} onHide={handleClose}>
@@ -24,6 +24,6 @@ export default function Broadcast() {
             </Button>
           </Modal.Footer>
         </Modal>
-      </>
+        </div>
     );
   }

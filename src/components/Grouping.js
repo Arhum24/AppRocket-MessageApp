@@ -8,22 +8,22 @@ export default function Grouping() {
     const handleShow = () => setShow(true);
   
     return (
-      <>
+      <div>
         <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
+          Group
         </Button>
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Create a New Group</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>Woohoo, more people</Modal.Body>
           <Modal.Footer>
             <Button variant="success" onClick={handleClose}>
               Close
             </Button>
           </Modal.Footer>
         </Modal>
-      </>
+        </div>
     );
   }

@@ -4,39 +4,42 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import { Navbar } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'reactstrap';
 import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
 import Logo from './LogoTP.png';
 
 export default function NavBar() {
     return (
-        <div class="container">
-            <div className="row">
-                <div className="col-md-12">
-                    <img src={Logo} alt="AppRocketLogo" class="nav justify-content-center"/>
-                </div>
-            </div>
+        <div>
+            
+            <Container>
+            <Router>
+            <Row>
+                    <Col lg="4">
+                        <img src={Logo} alt="AppRocketLogo" class="nav justify-content-center"/>
+                    </Col>
+                    
+                    <Col lg="4">
+                        <p>App Rocket</p>
+                        <p>Messaging</p>
+                        <p>App</p>
+                    </Col>
 
-            <div className="row">
-                <div className="col-md-12">
-                    <Router>
+                    <Col lg="4">
+                        <Button variant="primary" size="lg" href="/Login">
+                            Login
+                        </Button>
+                        <Button variant="primary" size="lg" href="/Signup">
+                            Signup
+                        </Button>
+                    </Col>
+            </Row>
 
-                        
-                        <Navbar bg="light" variant="light">
-                            <Navbar.Brand href="#">AppRocket Messaging</Navbar.Brand>
-                            <ul class="nav justify-content-center nav-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="/Login">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="/Signup">Signup</a>
-                                </li>
-                            </ul>
-                        </Navbar>
-
-                        
-                        <br />
+            
+                    
+                    <br />
                         <Switch>
                             <Route path="/Login">
                                 <Login />
@@ -47,8 +50,9 @@ export default function NavBar() {
                             </Route>
                         </Switch>
                     </Router>
-                </div>
-            </div>
+                
+            
+            </Container>
         </div>
     );
 

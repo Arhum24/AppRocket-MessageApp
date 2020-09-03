@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { mainUser, contactsMessages, Message } from './generateFakeData'
 import Options from './Options'
+import Avatar from './Avatar'
 import ContactBox from './ContactBox'
 import MessagesBox from './MessagesBox'
 import ChatInputBox from './ChatInputBox'
@@ -48,7 +49,7 @@ export default function ChatPage() {
         <div className="app">
             <aside>
                 <header>
-                    <Options user={mainUser} />
+                    <Avatar user={mainUser} />
                 </header>
                 <Search search={search} setSearch={setSearch} />
                 <div className="contact-boxes">
@@ -65,7 +66,7 @@ export default function ChatPage() {
             {contactSelected.id ? (
                 <main>
                     <header>
-                        <Options user={contactSelected} showName />
+                        <Avatar user={contactSelected} showName />
                     </header>
                     <MessagesBox messages={currentMessages} />
                     <ChatInputBox message={message} setMessage={setMessage} pushMessage={pushMessage} />

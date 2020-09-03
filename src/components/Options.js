@@ -1,42 +1,52 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
-import { Navbar} from 'react-bootstrap';
-import Grouping from './Grouping';
-import Broadcast from './Broadcast';
+import { Button, Modal } from 'react-bootstrap';
 
-export default function Name({ user, showName }) {
+export default function Options() {
+    const [showG, setShowG] = React.useState(false);
+    const [showB, setShowB] = React.useState(false);
+  
+    const handleCloseG = () => setShowG(false);
+    const handleShowG = () => setShowG(true);
+    const handleCloseB = () => setShowB(false);
+    const handleShowB = () => setShowB(true);
     return (
-        <div className="name-component">
-            <Router>
+        <div>
+        <div>
+        <Button variant="secondary" onClick={handleShowG}>
+          Group
+        </Button>
+  
+        <Modal show={showG} onHide={handleCloseG}>
+          <Modal.Header closeButton>
+            <Modal.Title>Create a New Group</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Woohoo, more people</Modal.Body>
+          <Modal.Footer>
+            <Button variant="success" onClick={handleCloseG}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        </div>
 
 
-                <Navbar bg="light" variant="light">
-                    <ul class="nav justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link " href="/Group">Add New Group</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Broadcast">Send Broadcast</a>
-                        </li>
-                    </ul>
-                </Navbar>
-
-
-                <br />
-                <Switch>
-                    <Route path="/Group">
-                        <Grouping />
-                    </Route>
-
-                    <Route path="/Broadcast">
-                        <Broadcast />
-                    </Route>
-                </Switch>
-            </Router>
+        <div>
+        <Button variant="secondary" onClick={handleShowB}>
+          Broadcast
+        </Button>
+  
+        <Modal show={showB} onHide={handleCloseB}>
+          <Modal.Header closeButton>
+            <Modal.Title> Send a Broadcast Message </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Enter Something Here!!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="success" onClick={handleCloseB}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        </div>
         </div>
     )
 }

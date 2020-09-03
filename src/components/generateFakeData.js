@@ -7,6 +7,27 @@ class User {
         this.avatar = faker.internet.avatar()
     }
 }
+
+// const allUsers = async() => {
+    
+//     const token = localStorage.getItem("token");
+//     await fetch("http://localhost:8000/api/userdata", {
+//         method: 'GET',
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json',
+//             'x-access-token': token,
+//             "Access-Control-Allow-Origin": "*",
+//         },
+//         body: JSON.stringify({
+//             username: username
+//         }),
+
+//     }).then((response) => response.json()).then((data) => {
+//         console.log(data);
+//     })
+
+// }
 export class Message {
     constructor(isMainUser, msg, date) {
         this.id = faker.random.uuid()
@@ -17,6 +38,26 @@ export class Message {
 }
 
 export const mainUser = new User()
+
+// export const mainuser = async () => {
+
+//     const token = localStorage.getItem("token");
+//     await fetch("http://localhost:8000/api/userdata", {
+//         method: 'GET',
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json',
+//             'x-access-token': token,
+//             "Access-Control-Allow-Origin": "*",
+//         },
+//         body: JSON.stringify({
+//             username: username
+//         }),
+
+//     }).then((response) => response.json()).then((data) => {
+//         console.log(data);
+//     })
+// }
 
 export const contacts = [...Array(15).keys()].map(() => new User())
 
