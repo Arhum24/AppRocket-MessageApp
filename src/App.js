@@ -1,33 +1,30 @@
 import React from 'react';
-import LandingPage from "./components/LandingPage";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+  Route,
+} from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
 import ChatPage from "./components/ChatPage";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 
 function App() {
   return (
-    <Router history={history}>
+    <Router>
       <Switch>
-        <Route path="/"
-          render={() => {
 
-            if (!localStorage.getItem("token") || JSON.parse(localStorage.getItem("profile")).auth == false)
-              return (
-                <Redirect to="/LandingPage" />
-                )
-            else {
+      <Route exact path="/">
+            <NavBar />
+          </Route>
 
-              return <LandingPage />
-              }
-          }}
-
-        />
           <Route path="/ChatPage"
             render={() => {
 
-            if (!localStorage.getItem("token") || JSON.parse(localStorage.getItem("profile")).auth == false)
+            if (!localStorage.getItem("token") || JSON.parse(localStorage.getItem("profile")).auth === false)
               return (
-                <Redirect to="/LandingPage" />
+                <Redirect to="/" />
 
               )
             else {
@@ -41,17 +38,6 @@ function App() {
         <Route path="/Login" component={Login} />
         <Route path="/Signup" component={Signup} />
         
-        <Route
-          exact
-          path="/"
-          render={() => {
-
-            localStorage.clear();
-            return (
-              <Redirect to="/LandingPage" />
-              )
-            }}
-        />
 
       </Switch>
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Signup.css";
 
-export default function Signup() {
+export default function Signup(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,7 +10,7 @@ export default function Signup() {
     return username.length > 0 && password.length > 0;
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit (event) {
     event.preventDefault();
     try {
         await fetch("http://localhost:8000/api/Signup", {
@@ -45,7 +45,7 @@ export default function Signup() {
                 }
                 catch (error) {
 
-                    setErrorLogin("Wrong Username or Password");
+                    console.error(error);
 
                 }
         })
