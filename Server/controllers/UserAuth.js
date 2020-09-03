@@ -4,26 +4,12 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 var User = require('../models/user');
-var db = mongoose.connection;
-var dburl = 'mongodb://localhost:27017/AppRocket';
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-var config = require('../config');
+var config = require('./config');
 //var VerifyToken = require('./VerifyToken.js');
 
 try{
-
-// DB connection
-db.on('error', function () {
-    console.log('There was an Error Communicating with Database');
-});
-mongoose.connect(dburl, { useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true },function (err) {
-    if (err) {
-        return console.log('There was error Connecting to Database URL');
-    }
-
-});
-
 // Signup
 module.exports.Signup =  (req, res) => {
 
@@ -31,7 +17,7 @@ module.exports.Signup =  (req, res) => {
 
   User.create({
 
-    username : req.body.name,
+    username : req.body.username,
     password : hashedPassword,
     
   },
@@ -93,5 +79,3 @@ catch(err){
   var error = JSON.parse(err);
   console.log(error);
 }
-
-module.exports = router;

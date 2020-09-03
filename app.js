@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var mongoose = require('mongoose');
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
@@ -11,7 +12,18 @@ var user = require('./Server/routes/user');
 
 var app = express();
 
+// MongoDB Setup
+var db = mongoose.connection;
+var dburl = 'mongodb+srv://AppRocketDB:WrongPassword@cluster0.atxed.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority';
+db.on('error', function () {
+  console.log('There was an Error Communicating with Database');
+});
+mongoose.connect(dburl, { useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true },function (err) {
+  if (err) {
+      return console.log('There was error Connecting to Database URL');
+  }
 
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
