@@ -23,13 +23,12 @@ class User {
 }
 
 function AllUser(userId) {
-    
+        const token = localStorage.getItem("token");
         fetch("https://approcketmessaging-node.herokuapp.com/api/allusersdata", {
             method: 'GET',
-            body: new URLSearchParams({
-                _id : userId,
-
-            }),
+            headers: {
+                'x-access-token': token
+              },
         }).then((response) => response.json()).then( (err,data) => {
             if(err){
                 console.error(err);
