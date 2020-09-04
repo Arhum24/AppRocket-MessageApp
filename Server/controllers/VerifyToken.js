@@ -9,7 +9,8 @@ function VerifyToken(req, res, next) {
   jwt.verify(token, config.secret, function(err, decoded) {
     if (err)
     return res.status(500).send({ auth: false, message: 'Failed to Authenticate Token.' });
-      
+    
+    res.locals.id=decoded.id;
     req.userId = decoded.id;
     next();
     });
