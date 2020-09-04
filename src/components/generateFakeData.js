@@ -1,14 +1,48 @@
 const faker = require('faker')
 
+// class User {
+//     constructor() {
+//         this.id = faker.random.uuid()
+//         this.name = faker.name.findName()
+//         // this.avatar = faker.internet.avatar()
+//     }
+// }
 class User {
     constructor() {
-        this.id = faker.random.uuid()
-        this.name = faker.name.findName()
-        // this.avatar = faker.internet.avatar()
+        fetch("https://approcketmessaging-node.herokuapp.com/api/userdata", {
+            method: 'GET',
+        }).then((response) => response.json()).then( (err,data) => {
+            if(err){
+                console.error(err);
+            }
+            else{
+             return data;
+            }
+        })
     }
 }
+
+function AllUser(userId) {
+    
+        fetch("https://approcketmessaging-node.herokuapp.com/api/allusersdata", {
+            method: 'GET',
+            body: new URLSearchParams({
+                _id : userId,
+
+            }),
+        }).then((response) => response.json()).then( (err,data) => {
+            if(err){
+                console.error(err);
+            }
+            else{
+             return data;
+            }
+        })
+    
+}
+
 export class Message {
-    constructor(isMainUser, msg, date) {
+    constructor(isMainUser, msg) {
         this.id = faker.random.uuid()
         this.msg = msg || faker.lorem.words(faker.helpers.randomize([...Array(20).keys()]))
         this.isMainUser = isMainUser
@@ -17,7 +51,7 @@ export class Message {
 
 export const mainUser = new User()
 
-export const contacts = [...Array(5).keys()].map(() => new User())
+export const contacts = [...Array(5).keys()].map(() => AllUser(localStorage.getItem("profile._id")))
 
 export const contactsMessages = contacts.map((contact) => {
     return {
