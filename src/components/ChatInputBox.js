@@ -1,6 +1,6 @@
 import React from 'react'
-import emojiIcon from '../assets/tag_faces.svg'
-import micIcon from '../assets/mic.svg'
+// import emojiIcon from '../assets/tag_faces.svg'
+// import micIcon from '../assets/mic.svg'
 import sendIcon from '../assets/send.svg'
 
 export default function ChatInputBox({ message, setMessage, pushMessage }) {
@@ -11,9 +11,9 @@ export default function ChatInputBox({ message, setMessage, pushMessage }) {
     }
     return (
         <div className="chat-input-box">
-            <div className="icon emoji-selector">
+            {/* <div className="icon emoji-selector">
                 <img src={emojiIcon} alt="" />
-            </div>
+            </div> */}
 
             <div className="chat-input">
                 <input
@@ -25,9 +25,9 @@ export default function ChatInputBox({ message, setMessage, pushMessage }) {
                 />
             </div>
 
-            <div className="icon send" onClick={pushMessage}>
+            {/* <div className="icon send" onClick={pushMessage}>
                 <img src={message ? sendIcon : micIcon} alt="" />
-            </div>
+            </div> */}
         </div>
     )
 }

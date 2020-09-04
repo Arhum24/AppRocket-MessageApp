@@ -1,5 +1,5 @@
 import React from 'react'
-import doubleCheck from '../assets/done_all.svg'
+// import doubleCheck from '../assets/done_all.svg'
 
 export default function Message({ message }) {
     return (
@@ -7,7 +7,7 @@ export default function Message({ message }) {
             {message.msg}
             <div className="metadata">
                 {/* <span className="date">{message.date.toLocaleString()}</span> */}
-                {message.isMainUser && <img src={doubleCheck} alt="" className="icon-small" />}
+                {message.isMainUser }
             </div>
         </div>
     )

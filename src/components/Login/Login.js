@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "./Login.css";
 import NavBar from '../NavBar/NavBar'
@@ -60,6 +65,7 @@ export default function Login(props) {
   return (
     <div>
       {/* <NavBar /> */}
+      <Router>
     <div className="Login">
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="username" bsSize="large">
@@ -83,7 +89,19 @@ export default function Login(props) {
           Login
         </Button>
       </form>
+      <br/>
+      <br/>
+      <Button variant="secondary" block bsSize="large" href="/">
+          Back
+        </Button>
+
+
+        <Route path="/">
+          <NavBar />
+          </Route>
+        
     </div>
+    </Router>
     </div>
   )
 }

@@ -20,21 +20,26 @@ export default function NavBar() {
                     <Col lg="4">
                         <img src={Logo} alt="AppRocketLogo" class="nav justify-content-center"/>
                     </Col>
-                    
-                    <Col lg="4">
-                        <p>App Rocket</p>
-                        <p>Messaging</p>
-                        <p>App</p>
+            </Row>
+            <Row>
+                
+            <Col lg="6">
+                        <h2>App Rocket</h2>
+                        <h2>Messaging App</h2>
                     </Col>
-
-                    <Col lg="4">
-                        <Button variant="primary" size="lg" href="/Login">
+            </Row>
+            <Row>
+            <Col lg="2">
+                        <Button variant="secondary" size="lg" href="/Login">
                             Login
                         </Button>
-                        <Button variant="primary" size="lg" href="/Signup">
+                        
+                    </Col>
+            <Col lg="2">
+            <Button variant="secondary" size="lg" href="/Signup">
                             Signup
                         </Button>
-                    </Col>
+            </Col>
             </Row>
 
             
