@@ -97,8 +97,12 @@ io.on("connection", (socket) => {
 
     console.log("Joined Chat: " + chatId);
     const user = await User.findOne({ _id: socket.userId });
-    const chatroom_ = await Chat.findOne({_id:chatId})
-    io.sockets.emit("broadcast",{message:user.name+" joined the "+chatroom_.name+" chatroom"});
+    const chat = await Chat.findOne({_id:chatId})
+  });
+  
+  socket.on("Broadcast", async({ message }) => {
+    const user = await User.findOne({ _id: socket.userId });
+    io.sockets.emit("broadcast",{message:user.username+"has Broadcasted Message"});
   });
 
   socket.on("MessageinChat", async ({ chatId, message }) => {
