@@ -64,8 +64,6 @@ export default function Login(props) {
 
   return (
     <div>
-      {/* <NavBar /> */}
-      <Router>
     <div className="Login">
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="username" bsSize="large">
@@ -94,14 +92,8 @@ export default function Login(props) {
       <Button variant="secondary" block bsSize="large" href="/">
           Back
         </Button>
-
-
-        <Route path="/">
-          <NavBar />
-          </Route>
         
     </div>
-    </Router>
     </div>
   )
 }
