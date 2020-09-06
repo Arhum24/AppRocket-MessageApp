@@ -6,12 +6,15 @@ var logger = require('morgan');
 var cors = require('cors');
 var config = require('./Server/controllers/config');
 var User = require('./Server/models/user');
-var Message = require('./Server/models/chat');
+var Chat = require('./Server/models/chat');
+var Message = require('./Server/models/message');
 var mongoose = require('mongoose');
+var jwt = require('jsonwebtoken');
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
 var user = require('./Server/routes/user');
+var message = require('./Server/routes/message');
 
 var app = express();
 
@@ -43,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/api', user);
+app.use('/api/message', message);
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
@@ -65,34 +69,49 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 const server = app.listen(8000, () => {
-  console.log("Server listening on port 8000");
+  console.log("Server is Listening");
 });
 
+// Socket Setup
 const io = require("socket.io")(server);
 
-// Socket Setup
 io.use(async (socket, next) => {
   try {
     const token = socket.handshake.query.token;
-    const decoded = await jwt.verify(token, config.secret);
-    socket.userId = decoded.id;
+    const payload = await jwt.verify(token, config.secret);
+    socket.userId = payload.id;
     next();
   } catch (err) {}
 });
 
 io.on("connection", (socket) => {
-  socket.on("chat", async ({ reciever, message }) => {
+  console.log("Connected: " + socket.userId);
+
+  socket.on("Disconnect", () => {
+    console.log("Disconnected: " + socket.userId);
+  });
+
+  socket.on("JoinChat", async({ chatId }) => {
+    socket.join(chatId);
+    socket.chatId=chatId;
+
+    console.log("A user joined chatroom: " + chatId);
+    const user = await User.findOne({ _id: socket.userId });
+    const chatroom_ = await Chat.findOne({_id:chatId})
+    io.sockets.emit("broadcast",{message:user.name+" joined the "+chatroom_.name+" chatroom"});
+  });
+
+  socket.on("MessageinChat", async ({ chatId, message }) => {
     if (message.trim().length > 0) {
       const user = await User.findOne({ _id: socket.userId });
       const newMessage = new Message({
-        reciever: reciever,
-        sender: socket.userId,
+        chat: chatId,
+        user: socket.userId,
         message,
-        username:user.username
       });
-      io.to(reciever).emit("newMessage", {
-        messge,
-        sender: socket.userId,
+      io.to(chatId).emit("newMessage", {
+        message,
+        user: socket.userId,
       });
       await newMessage.save();
     }

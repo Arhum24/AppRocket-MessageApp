@@ -5,6 +5,7 @@ var ChatSchema = new Schema(
     {
         receiver:{
             type:Schema.Types.ObjectId,
+            required: "User ID is required!",
             ref:'user'
         },
         message:{
@@ -12,6 +13,7 @@ var ChatSchema = new Schema(
         },
         sender:{
             type:Schema.Types.ObjectId,
+            required: "User ID is required!",
             ref:'user'
         }
 
