@@ -95,7 +95,7 @@ io.on("connection", (socket) => {
     socket.join(chatId);
     socket.chatId=chatId;
 
-    console.log("A user joined chatroom: " + chatId);
+    console.log("Joined Chat: " + chatId);
     const user = await User.findOne({ _id: socket.userId });
     const chatroom_ = await Chat.findOne({_id:chatId})
     io.sockets.emit("broadcast",{message:user.name+" joined the "+chatroom_.name+" chatroom"});
